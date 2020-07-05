@@ -13,7 +13,8 @@ import {
     Button,
     Spinner,
     Accordion,
-    Card
+    Card,
+    Alert
 } from 'react-bootstrap'
 import CommentList from './CommentList'
 import './ShowDetail.css'
@@ -246,10 +247,15 @@ class ShowDetail extends Component {
                                                         {this.state.reviews.length > 0
                                                             ?
                                                             this.state.reviews.map(review =>
-                                                                <div><Badge variant="danger">{review.rate}</Badge> : {review.comment}</div>
+                                                                <div>
+                                                                    <Badge variant="danger">{review.rate}</Badge>
+                                                                     : {review.comment}
+                                                                    <Button onClick={() => this.deleteReview(review._id)}>Delete</Button>
+                                                                    <Button onClick={() => this.editReview(review._id)}>Edit</Button>
+                                                                </div>
                                                             )
                                                             :
-                                                            <p>No reviews yet!</p>
+                                                            <Alert variant="danger">No reviews yet!</Alert>
                                                         }
                                                     </Card.Body>
                                                     <Card.Footer>
